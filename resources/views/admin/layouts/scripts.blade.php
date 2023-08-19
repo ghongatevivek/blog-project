@@ -7,6 +7,8 @@
 <script src="{{asset('assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
 <script src="{{asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
 <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+<script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>
 
 <!-- Template Main JS File -->
 <script src="{{asset('assets/js/main.js')}}"></script>
+@stack('scripts')
