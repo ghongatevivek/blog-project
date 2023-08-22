@@ -37,7 +37,7 @@ class ManageReminderTypeController extends Controller
     public function store(ReminderTypeCreateUpdateRequest $request)
     {
         $createUpdateReminderType = $this->reminderTypeService->store($request);
-        if($createUpdateReminderType['status']){
+        if(!$createUpdateReminderType['status']){
             return json_encode(array('data' => $createUpdateReminderType,'status' => 200));
         }
     }

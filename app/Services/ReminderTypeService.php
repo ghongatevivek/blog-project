@@ -13,6 +13,6 @@ class ReminderTypeService{
 
         $input = $request->validated();
         $saveReminderType = ReminderType::create($input);
-        return $saveReminderType;
+        return $this->successResponseArr('Reminder Type Saved.',$saveReminderType);
     }
 }
