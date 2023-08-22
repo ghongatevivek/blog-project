@@ -22,6 +22,6 @@ trait CommonTrait {
     public function successResponse($data,$code) {
         return response()->json([
             'data' => $data,
-        ])
+        ]);
     }
 }
