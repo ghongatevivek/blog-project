@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ReminderTypeCreateUpdateRequest;
 use Illuminate\Http\Request;
 use App\Services\ReminderTypeService;
+use App\Traits\CommonTrait;
 
 class ManageReminderTypeController extends Controller
 {
+    use CommonTrait;
     protected $reminderTypeService;
 
     public function __construct(ReminderTypeService $reminderTypeService) {
@@ -38,8 +40,9 @@ class ManageReminderTypeController extends Controller
     {
         $createUpdateReminderType = $this->reminderTypeService->store($request);
         if(!$createUpdateReminderType['status']){
-            return json_encode(array('data' => $createUpdateReminderType,'status' => 200));
+            return $this->jsonResponse($createUpdateReminderType);
         }
+        return $this->jsonResponse($createUpdateReminderType);
     }
 
     /**

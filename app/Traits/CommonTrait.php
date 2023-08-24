@@ -24,4 +24,8 @@ trait CommonTrait {
             'data' => $data,
         ]);
     }
+
+    public function jsonResponse($data) {
+        return response()->json($data);
+    }
 }
