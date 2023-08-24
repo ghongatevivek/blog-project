@@ -20,14 +20,14 @@
                             <!-- <div class="form-check form-switch">
                                 <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" checked>
                             </div> -->
-                            <input type="radio" name="status" value="1">Active
+                            <input type="radio" name="status" checked value="1">Active
                             <input type="radio" name="status" value="0">Deactie
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary submitBtn">Save</button>
                 </div>
             </div>
         </form>

@@ -87,14 +87,19 @@
     $(document).ready(function(){
         $("#reminderTypeFrm").submit(function(e){
             e.preventDefault();
-            console.log(e);
             $.ajax({
                 url : "{{route('remindertype.store')}}",
                 type : 'POST',
                 data : $(this).serialize(),
-                submit : function(response){
-                    if(response.status == 200){
-                        alert('Done');
+                beforeSend : function(){
+                    $(".submitBtn").attr('disabled',true);
+                },
+                success : function(response){
+                    if(response.status){
+                        $(".submitBtn").removeAttr('disabled');
+                        alert(response.message);
+                        $("#reminderTypeFrm")[0].reset();
+                        $("#basicModal").modal('hide');
                     }
                 }
             })
