@@ -7,6 +7,9 @@ use App\Http\Requests\Admin\ReminderTypeCreateUpdateRequest;
 use Illuminate\Http\Request;
 use App\Services\ReminderTypeService;
 use App\Traits\CommonTrait;
+use App\Models\ReminderType;
+use Yajra\DataTables\DataTables;
+
 
 class ManageReminderTypeController extends Controller
 {
@@ -19,8 +22,17 @@ class ManageReminderTypeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+
+            $data = ReminderType::latest()->get();
+
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->rawColumns(['name','created_at'])
+                    ->make(true);
+        }
         $title = 'Reminder Type';
         return view('admin.remindertype.index',compact('title'));
     }
