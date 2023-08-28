@@ -30,7 +30,18 @@ class ManageReminderTypeController extends Controller
 
             return Datatables::of($data)
                     ->addIndexColumn()
-                    ->rawColumns(['name','created_at'])
+                    ->addColumn('action', function($row) {
+                        return '<a href="javascript:void(0)" class="btn btn-success"><i class="bx bxs-pencil"></i> </a>
+                        <a href="javascript:void(0)" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>';
+                    })
+                    ->addColumn('status', function($row) {
+                        $statusText = ($row->status == 1) ? 'Active' : 'Inactive';
+                        return $statusText;
+                    })
+                    ->addColumn('created_at', function($row) {
+                        return date('d M Y',strtotime($row->created_at));
+                    })
+                    ->rawColumns(['name','status','created_at','action'])
                     ->make(true);
         }
         $title = 'Reminder Type';
