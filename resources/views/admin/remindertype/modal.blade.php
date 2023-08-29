@@ -10,18 +10,11 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
+                            <input type="hidden" name="id" id="id">
                             <div class="form-group">
                                 <label for="">Name</label>
-                                <input type="text" name="name" class="form-control">
+                                <input type="text" id="name" name="name" class="form-control">
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="">Status</label>
-                            <!-- <div class="form-check form-switch">
-                                <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" checked>
-                            </div> -->
-                            <input type="radio" name="status" checked value="1">Active
-                            <input type="radio" name="status" value="0">Deactie
                         </div>
                     </div>
                 </div>

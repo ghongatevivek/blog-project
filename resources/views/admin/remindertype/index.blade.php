@@ -93,6 +93,21 @@
             })
         })
 
+        // Edit 
+        $(document).on('click',".edit-btn",function(){
+            let id = $(this).data('id');
+            $.ajax({
+                url: "{{route('remindertype.show',23)}}",
+                type: 'GET',
+                success: function(response) {
+                    if (response.status) {
+                        $("#basicModal").modal('show');
+                        $("#name").val(response.data.name);
+                        $("#id").val(response.data.id);
+                    }
+                }
+            })
+        })
     })
 </script>
 @endpush

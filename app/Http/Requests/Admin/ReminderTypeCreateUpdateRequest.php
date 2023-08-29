@@ -24,7 +24,6 @@ class ReminderTypeCreateUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'status' => ['required']
         ];
     }
 }

@@ -31,7 +31,7 @@ class ManageReminderTypeController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row) {
-                        return '<a href="javascript:void(0)" class="btn btn-success"><i class="bx bxs-pencil"></i> </a>
+                        return '<a href="javascript:void(0)" data-id="'.$row->id.'" class="edit-btn btn btn-success"><i class="bx bxs-pencil"></i> </a>
                         <a href="javascript:void(0)" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>';
                     })
                     ->addColumn('status', function($row) {
@@ -61,7 +61,11 @@ class ManageReminderTypeController extends Controller
      */
     public function store(ReminderTypeCreateUpdateRequest $request)
     {
-        $createUpdateReminderType = $this->reminderTypeService->store($request);
+        if(!empty($request->id) && $request->id != null){
+            $createUpdateReminderType = $this->reminderTypeService->update($request,$request->id);
+        }else{
+            $createUpdateReminderType = $this->reminderTypeService->store($request);
+        }
         if(!$createUpdateReminderType['status']){
             return $this->jsonResponse($createUpdateReminderType);
         }
@@ -73,7 +77,11 @@ class ManageReminderTypeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $reminderType = $this->reminderTypeService->show($id);
+        if(!$reminderType['status']){
+            return $this->jsonResponse($reminderType);
+        }
+        return $this->jsonResponse($reminderType);
     }
 
     /**
