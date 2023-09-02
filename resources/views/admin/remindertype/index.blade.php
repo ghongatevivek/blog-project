@@ -72,6 +72,12 @@
         ]
     });
     $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $("#reminderTypeFrm").submit(function(e) {
             e.preventDefault();
             $.ajax({
@@ -87,7 +93,7 @@
                         alert(response.message);
                         $("#reminderTypeFrm")[0].reset();
                         $("#basicModal").modal('hide');
-                        table.draw()
+                        table.draw();
                     }
                 }
             })
@@ -95,15 +101,40 @@
 
         // Edit 
         $(document).on('click',".edit-btn",function(){
-            let id = $(this).data('id');
+            let id = $(this).data("id");
+            let edit_route_name = "{{route('remindertype.show',[':id'])}}";
+            edit_route_name = edit_route_name.replace(':id',id);
             $.ajax({
-                url: "{{route('remindertype.show',23)}}",
+                url: edit_route_name,
                 type: 'GET',
                 success: function(response) {
                     if (response.status) {
                         $("#basicModal").modal('show');
+                        $(".modal-title").text('Edit Reminder Type');
                         $("#name").val(response.data.name);
                         $("#id").val(response.data.id);
+                    }else{
+                        alert(response.message);
+                    }
+                }
+            })
+        })
+
+        // Delete
+        $(document).on('click',".delete-btn",function(){
+            let id = $(this).data("id");
+            let delete_route_name = "{{route('remindertype.destroy',[':id'])}}";
+            delete_route_name = delete_route_name.replace(':id',id);
+            $.ajax({
+                url: delete_route_name,
+                type: 'delete',
+                data:{"_token": "{{ csrf_token() }}"},
+                success: function(response) {
+                    if (response.status) {
+                        alert(response.message);
+                        table.draw();
+                    }else{
+                        alert(response.message);
                     }
                 }
             })
