@@ -35,11 +35,11 @@
 
         </div>
     </div>
+    @include('admin.remindertype.modal')
 </section>
 
 @endsection
 
-@include('admin.remindertype.modal')
 
 @push('scripts')
 <script>

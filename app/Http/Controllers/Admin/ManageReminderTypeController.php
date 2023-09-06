@@ -38,6 +38,8 @@ class ManageReminderTypeController extends Controller
                     })
                     ->addColumn('status', function($row) {
                         $statusText = ($row->status == 1) ? 'Active' : 'Inactive';
+                        $statusClass = ($row->status == 1) ? 'bg-success' : 'bg-danger';
+                        $statusText = '<span class="badge rounded-pill  '.$statusClass.'">'.$statusText.'</span>';
                         return $statusText;
                     })
                     ->addColumn('created_at', function($row) {
@@ -103,5 +105,9 @@ class ManageReminderTypeController extends Controller
     {
         $reminderType = $this->reminderTypeService->delete($id);
         return $this->jsonResponse($reminderType); 
+    }
+
+    public function updateStatus(Request $request){
+
     }
 }
