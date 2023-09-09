@@ -139,6 +139,28 @@
                 }
             })
         })
+
+        $(document).on('click','.status-change',function(){
+            let id = $(this).data('id');
+            let status = $(this).data('status');
+            let statusChangeRoute = "{{route('remindertype.status')}}";
+            $.ajax({
+                url: statusChangeRoute,
+                type: 'POST',
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    'id' : id,
+                    'status' : status
+                },
+                success: function(response) {
+                    if (response.status) {
+                        table.draw();
+                    }else{
+                        alert(response.message);
+                    }
+                }
+            })
+        })
     })
 </script>
 @endpush

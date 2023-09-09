@@ -39,7 +39,8 @@ class ManageReminderTypeController extends Controller
                     ->addColumn('status', function($row) {
                         $statusText = ($row->status == 1) ? 'Active' : 'Inactive';
                         $statusClass = ($row->status == 1) ? 'bg-success' : 'bg-danger';
-                        $statusText = '<span class="badge rounded-pill  '.$statusClass.'">'.$statusText.'</span>';
+                        $updateStatus = ($row->status == 1) ? 0 : 1;
+                        $statusText = '<span href="javascript:void(0)" data-id="'.$row->id.'" data-status="'.$updateStatus.'" class="status-change badge rounded-pill  '.$statusClass.'">'.$statusText.'</span>';
                         return $statusText;
                     })
                     ->addColumn('created_at', function($row) {
@@ -108,6 +109,7 @@ class ManageReminderTypeController extends Controller
     }
 
     public function updateStatus(Request $request){
-
+        $updateStatus = $this->reminderTypeService->updateStatus($request);
+        return $this->jsonResponse($updateStatus); 
     }
 }

@@ -42,4 +42,15 @@ class ReminderTypeService{
         $getReminderType->delete();
         return $this->successResponseArr('Reminder type deleted successfully.',[]);
     }
+
+    public function updateStatus(Request $request) {
+        $id = $request->id;
+        $getReminderType = ReminderType::where('id',$id)->first();
+        if($getReminderType == null){
+            return $this->errorResponseArr('Reminder Type Not Found');
+        }
+        $input['status'] = $request->status;
+        $getReminderType->update($input);
+        return $this->successResponseArr('Reminder type updated successfully.',[]);
+    }
 }
