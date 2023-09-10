@@ -10,7 +10,7 @@
     </a>
   </li><!-- End Dashboard Nav -->
   <li class="nav-item">
-    <a class="nav-link " href="index.html">
+    <a class="nav-link " href="{{route('user.index')}}">
       <i class="bi bi-users"></i>
       <span>Manage Users</span>
     </a>

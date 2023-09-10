@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\ManageReminderTypeController;
+use App\Http\Controllers\Admin\{ManageReminderTypeController,ManageUserController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +23,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('remindertype',ManageReminderTypeController::class);
+Route::resource('user',ManageUserController::class);
 Route::post('remindertype/updateStatus',[ManageReminderTypeController::class,'updateStatus'])->name('remindertype.status');
