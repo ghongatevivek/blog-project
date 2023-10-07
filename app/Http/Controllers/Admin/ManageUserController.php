@@ -88,4 +88,9 @@ class ManageUserController extends Controller
     {
         //
     }
+
+    public function getProfile() {
+        $title = "Update Profile";
+       return view('admin.profile.index',compact('title'));
+    }
 }

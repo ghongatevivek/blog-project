@@ -25,3 +25,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('remindertype',ManageReminderTypeController::class);
 Route::resource('user',ManageUserController::class);
 Route::post('remindertype/updateStatus',[ManageReminderTypeController::class,'updateStatus'])->name('remindertype.status');
+Route::get('profile',[ManageUserController::class,'getProfile'])->name('update.profile');
