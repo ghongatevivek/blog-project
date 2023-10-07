@@ -36,7 +36,7 @@
 
         </div>
     </div>
-    @include('admin.remindertype.modal')
+    @include('admin.user.modal')
 </section>
 
 @endsection
