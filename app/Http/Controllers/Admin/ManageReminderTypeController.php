@@ -33,7 +33,7 @@ class ManageReminderTypeController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row) {
-                        return '<a href="javascript:void(0)" data-id="'.$row->id.'" class="edit-btn btn btn-success"><i class="bx bxs-pencil"></i> </a>
+                        return '<a href="javascript:void(0)" data-id="'.$row->id.'" class="edit-btn btn btn-success"><i class="bi bi-pencil-fill"></i> </a>
                         <a href="javascript:void(0)" data-id="'.$row->id.'" class="delete-btn btn btn-danger"><i class="bi bi-trash-fill"></i></a>';
                     })
                     ->addColumn('status', function($row) {

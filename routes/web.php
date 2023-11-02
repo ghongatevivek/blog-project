@@ -22,7 +22,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('remindertype',ManageReminderTypeController::class);
-Route::resource('user',ManageUserController::class);
-Route::post('remindertype/updateStatus',[ManageReminderTypeController::class,'updateStatus'])->name('remindertype.status');
-Route::get('profile',[ManageUserController::class,'getProfile'])->name('update.profile');
+Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin']],function(){
+    Route::resource('remindertype',ManageReminderTypeController::class);
+    Route::resource('user',ManageUserController::class);
+    Route::post('remindertype/updateStatus',[ManageReminderTypeController::class,'updateStatus'])->name('remindertype.status');
+    Route::get('profile',[ManageUserController::class,'getProfile'])->name('update.profile');
+});
