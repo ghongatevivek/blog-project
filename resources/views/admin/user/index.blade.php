@@ -83,10 +83,10 @@
             }
         });
 
-        $("#reminderTypeFrm").submit(function(e) {
+        $("#userFrm").submit(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "{{route('remindertype.store')}}",
+                url: "{{route('user.store')}}",
                 type: 'POST',
                 data: $(this).serialize(),
                 beforeSend: function() {
@@ -96,7 +96,7 @@
                     if (response.status) {
                         $(".submitBtn").removeAttr('disabled');
                         alert(response.message);
-                        $("#reminderTypeFrm")[0].reset();
+                        $("#userFrm")[0].reset();
                         $("#basicModal").modal('hide');
                         table.draw();
                     }

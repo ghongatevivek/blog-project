@@ -12,12 +12,20 @@
                         <div class="col-md-12">
                             <input type="hidden" name="id" id="id">
                             <div class="form-group">
-                                <label for="">Name</label>
+                                <label for="name">Name</label>
                                 <input type="text" id="name" name="name" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="">Email</label>
+                                <label for="email">Email</label>
                                 <input type="email" id="email" name="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="mobile">Mobile</label>
+                                <input type="text" id="mobile" name="mobile" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password    ">Password</label>
+                                <input type="password" id="password" name="password" class="form-control">
                             </div>
                         </div>
                     </div>

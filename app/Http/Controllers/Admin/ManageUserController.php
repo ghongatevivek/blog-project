@@ -3,12 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ManageUserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Services\ManageUserService;
+use App\Traits\CommonTrait;
 use Yajra\DataTables\DataTables;
 
 class ManageUserController extends Controller
 {
+    use CommonTrait;
+    protected $userService;
+
+    public function __construct(ManageUserService $userService) {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -52,9 +62,14 @@ class ManageUserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ManageUserRequest $request)
     {
-        //
+        if(!empty($request->id) && $request->id != null){
+            $createUpdateReminderType = $this->userService->update($request,$request->id);
+        }else{
+            $createUpdateReminderType = $this->userService->store($request);
+        }
+        return $this->jsonResponse($createUpdateReminderType);
     }
 
     /**

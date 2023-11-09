@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('user_type')->default(0)->comment('0 = Admin, 1 = User');
+            $table->tinyInteger('user_type')->default(0)->comment('0 = Admin, 1 = User')->after('mobile');
         });
     }
 
