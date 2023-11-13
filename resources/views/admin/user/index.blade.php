@@ -107,7 +107,7 @@
         // Edit 
         $(document).on('click',".edit-btn",function(){
             let id = $(this).data("id");
-            let edit_route_name = "{{route('remindertype.show',[':id'])}}";
+            let edit_route_name = "{{route('user.show',[':id'])}}";
             edit_route_name = edit_route_name.replace(':id',id);
             $.ajax({
                 url: edit_route_name,
@@ -117,6 +117,8 @@
                         $("#basicModal").modal('show');
                         $(".modal-title").text('Edit Reminder Type');
                         $("#name").val(response.data.name);
+                        $("#email").val(response.data.email);
+                        $("#mobile").val(response.data.mobile);
                         $("#id").val(response.data.id);
                     }else{
                         alert(response.message);
@@ -128,7 +130,7 @@
         // Delete
         $(document).on('click',".delete-btn",function(){
             let id = $(this).data("id");
-            let delete_route_name = "{{route('remindertype.destroy',[':id'])}}";
+            let delete_route_name = "{{route('user.destroy',[':id'])}}";
             delete_route_name = delete_route_name.replace(':id',id);
             $.ajax({
                 url: delete_route_name,
@@ -148,7 +150,7 @@
         $(document).on('click','.status-change',function(){
             let id = $(this).data('id');
             let status = $(this).data('status');
-            let statusChangeRoute = "{{route('remindertype.status')}}";
+            let statusChangeRoute = "{{route('user.status')}}";
             $.ajax({
                 url: statusChangeRoute,
                 type: 'POST',

@@ -13,44 +13,44 @@ class ManageUserService{
 
         $input = $request->validated();
         $saveUser = User::create($input);
-        return $this->successResponseArr('Reminder type saved.',$saveUser);
+        return $this->successResponseArr('User saved.',$saveUser);
     }
 
     public function show($id){
         $getUser = User::where('id',$id)->first();
         if($getUser == null){
-            return $this->errorResponseArr('Reminder Type Not Found');
+            return $this->errorResponseArr('User Not Found');
         }
-        return $this->successResponseArr('Reminder type fetch successfully.',$getUser);
+        return $this->successResponseArr('User fetch successfully.',$getUser);
     }
 
     public function update(Request $request,$id) {
         $user = User::where('id',$id)->first();
         if($user == null){
-            return $this->errorResponseArr('Reminder Type Not Found');
+            return $this->errorResponseArr('User Not Found');
         }
         $input = $request->validated();
         $user->update($input);
-        return $this->successResponseArr('Reminder type updated.',$user);
+        return $this->successResponseArr('User updated.',$user);
     }
 
     public function delete($id){
         $getUser = User::where('id',$id)->first();
         if($getUser == null){
-            return $this->errorResponseArr('Reminder Type Not Found');
+            return $this->errorResponseArr('User Not Found');
         }
         $getUser->delete();
-        return $this->successResponseArr('Reminder type deleted successfully.',[]);
+        return $this->successResponseArr('User deleted successfully.',[]);
     }
 
     public function updateStatus(Request $request) {
         $id = $request->id;
         $getUserDetail = User::where('id',$id)->first();
         if($getUserDetail == null){
-            return $this->errorResponseArr('Reminder Type Not Found');
+            return $this->errorResponseArr('User Not Found');
         }
         $input['status'] = $request->status;
         $getUserDetail->update($input);
-        return $this->successResponseArr('Reminder type updated successfully.',[]);
+        return $this->successResponseArr('User updated successfully.',[]);
     }
 }

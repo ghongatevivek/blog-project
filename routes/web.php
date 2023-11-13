@@ -26,5 +26,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin']],function(){
     Route::resource('remindertype',ManageReminderTypeController::class);
     Route::resource('user',ManageUserController::class);
     Route::post('remindertype/updateStatus',[ManageReminderTypeController::class,'updateStatus'])->name('remindertype.status');
+    Route::post('user/updateStatus',[ManageUserController::class,'updateStatus'])->name('user.status');
     Route::get('profile',[ManageUserController::class,'getProfile'])->name('update.profile');
 });

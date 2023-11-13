@@ -77,7 +77,8 @@ class ManageUserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = $this->userService->show($id);
+        return $this->jsonResponse($user);
     }
 
     /**
