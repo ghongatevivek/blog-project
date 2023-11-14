@@ -12,6 +12,7 @@ class ManageUserService{
     public function store(Request $request) {
 
         $input = $request->validated();
+        $input['user_type'] = 1;
         $saveUser = User::create($input);
         return $this->successResponseArr('User saved.',$saveUser);
     }

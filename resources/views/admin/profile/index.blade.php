@@ -2,78 +2,131 @@
 
 @section('content')
 
+<div class="pagetitle">
+	<h1>Profile</h1>
+	<nav>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+			<li class="breadcrumb-item active">My Profile</li>
+		</ol>
+	</nav>
+</div><!-- End Page Title -->
 
-<section class="section">
-    
-    <div class="row">
-        <div class="col-lg-12">
+<section class="section profile">
+	<div class="row">
+		<div class="col-xl-4">
 
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title text-primary">{{$title}}</h5>
+			<div class="card">
+				<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <!-- Floating Labels Form -->
-              <form class="row g-3">
-                <div class="col-md-12">
-                  <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
-                    <label for="floatingName">Your Name</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingEmail" placeholder="Your Email">
-                    <label for="floatingEmail">Your Email</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"></textarea>
-                    <label for="floatingTextarea">Address</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="col-md-12">
-                    <div class="form-floating">
-                      <input type="text" class="form-control" id="floatingCity" placeholder="City">
-                      <label for="floatingCity">City</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-floating mb-3">
-                    <select class="form-select" id="floatingSelect" aria-label="State">
-                      <option selected>New York</option>
-                      <option value="1">Oregon</option>
-                      <option value="2">DC</option>
-                    </select>
-                    <label for="floatingSelect">State</label>
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingZip" placeholder="Zip">
-                    <label for="floatingZip">Zip</label>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-secondary">Reset</button>
-                </div>
-              </form><!-- End floating Labels Form -->
+					<img src="{{asset('assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
+					<h2>{{Auth::user()->name??'-'}}</h2>
 
-            </div>
-          </div>
+				</div>
+			</div>
 
-        </div>
-    </div>
-    
+		</div>
+
+		<div class="col-xl-8">
+
+			<div class="card">
+				<div class="card-body pt-3">
+					<!-- Bordered Tabs -->
+					<ul class="nav nav-tabs nav-tabs-bordered">
+
+						<li class="nav-item">
+							<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+						</li>
+
+						<li class="nav-item">
+							<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+						</li>
+
+					</ul>
+					<div class="tab-content pt-2">
+
+						<div class="tab-pane fade show active profile-edit pt-3" id="profile-edit">
+
+							<!-- Profile Edit Form -->
+							<form>
+								<div class="row mb-3">
+									<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+									<div class="col-md-8 col-lg-9">
+										<img src="assets/img/profile-img.jpg" alt="Profile">
+										<div class="pt-2">
+											<a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+											<a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+										</div>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="name" class="col-md-4 col-lg-3 col-form-label">User Name</label>
+									<div class="col-md-8 col-lg-9">
+										<input name="name" type="text" class="form-control" id="name" value="{{Auth::user()->name??'-'}}">
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="mobile" class="col-md-4 col-lg-3 col-form-label">Mobile</label>
+									<div class="col-md-8 col-lg-9">
+										<input name="mobile" type="text" class="form-control" id="mobile" value="{{Auth::user()->mobile??'-'}}">
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+									<div class="col-md-8 col-lg-9">
+										<input name="email" type="email" class="form-control" id="email" value="{{Auth::user()->mobile??'-'}}">
+									</div>
+								</div>
+
+								<div class="text-center">
+									<button type="submit" class="float-end btn btn-primary">Save Changes</button>
+								</div>
+							</form><!-- End Profile Edit Form -->
+
+						</div>
+
+						<div class="tab-pane fade pt-3" id="profile-change-password">
+							<!-- Change Password Form -->
+							<form>
+
+								<div class="row mb-3">
+									<label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+									<div class="col-md-8 col-lg-9">
+										<input name="password" type="password" class="form-control" id="currentPassword">
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+									<div class="col-md-8 col-lg-9">
+										<input name="newpassword" type="password" class="form-control" id="newPassword">
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+									<div class="col-md-8 col-lg-9">
+										<input name="renewpassword" type="password" class="form-control" id="renewPassword">
+									</div>
+								</div>
+
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary float-end">Change Password</button>
+								</div>
+							</form><!-- End Change Password Form -->
+
+						</div>
+
+					</div><!-- End Bordered Tabs -->
+
+				</div>
+			</div>
+
+		</div>
+	</div>
 </section>
 
 @endsection
@@ -81,59 +134,33 @@
 
 @push('scripts')
 <script>
-    
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+	$(document).ready(function() {
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
 
-        $("#reminderTypeFrm").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "{{route('remindertype.store')}}",
-                type: 'POST',
-                data: $(this).serialize(),
-                beforeSend: function() {
-                    $(".submitBtn").attr('disabled', true);
-                },
-                success: function(response) {
-                    if (response.status) {
-                        $(".submitBtn").removeAttr('disabled');
-                        alert(response.message);
-                        $("#reminderTypeFrm")[0].reset();
-                        $("#basicModal").modal('hide');
-                        table.draw();
-                    }
-                }
-            })
-        })
-
-        // Edit 
-        $(document).on('click',".edit-btn",function(){
-            let id = $(this).data("id");
-            let edit_route_name = "{{route('remindertype.show',[':id'])}}";
-            edit_route_name = edit_route_name.replace(':id',id);
-            $.ajax({
-                url: edit_route_name,
-                type: 'GET',
-                success: function(response) {
-                    if (response.status) {
-                        $("#basicModal").modal('show');
-                        $(".modal-title").text('Edit Reminder Type');
-                        $("#name").val(response.data.name);
-                        $("#id").val(response.data.id);
-                    }else{
-                        alert(response.message);
-                    }
-                }
-            })
-        })
-
-        
-
-        
-    })
+		$("#reminderTypeFrm").submit(function(e) {
+			e.preventDefault();
+			$.ajax({
+				url: "{{route('remindertype.store')}}",
+				type: 'POST',
+				data: $(this).serialize(),
+				beforeSend: function() {
+					$(".submitBtn").attr('disabled', true);
+				},
+				success: function(response) {
+					if (response.status) {
+						$(".submitBtn").removeAttr('disabled');
+						alert(response.message);
+						$("#reminderTypeFrm")[0].reset();
+						$("#basicModal").modal('hide');
+						table.draw();
+					}
+				}
+			})
+		})
+	})
 </script>
 @endpush

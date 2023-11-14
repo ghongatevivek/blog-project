@@ -16,4 +16,5 @@
   <link href="{{asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">

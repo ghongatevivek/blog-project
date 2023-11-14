@@ -1,17 +1,26 @@
 @extends('admin.layouts.admin')
 
 @section('content')
-
+<div class="row">
+    <div class="col-md-8">
+        <div class="pagetitle">
+            <h1>Users</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                    <li class="breadcrumb-item active">Manage Users</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+    </div>
+    <div class="col-md-4">
+        <button type="button" class="float-end btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+            Add {{$title}}
+        </button>
+    </div>
+</div>
 
 <section class="section">
-    <div class="row p-2">
-        <div class="col-md-12">
-            <!-- <a href="" class="float-end btn btn-primary">Add {{$title}}</a> -->
-            <button type="button" class="float-end btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-                Add {{$title}}
-            </button>
-        </div>
-    </div>
     <div class="row">
         <div class="col-lg-12">
 

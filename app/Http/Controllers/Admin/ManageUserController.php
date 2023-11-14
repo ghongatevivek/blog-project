@@ -26,20 +26,15 @@ class ManageUserController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = User::latest()->get();
+            $data = User::whereNotIn('id',[1])->latest()->get();
 
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row) {
-                        return '<a href="javascript:void(0)" data-id="'.$row->id.'" class="edit-btn btn btn-success"><i class="bi bi-pencil-fill"></i> </a>
-                        <a href="javascript:void(0)" data-id="'.$row->id.'" class="delete-btn btn btn-danger"><i class="bi bi-trash-fill"></i></a>';
+                        return $this->editDeleteButtons($row);
                     })
                     ->addColumn('status', function($row) {
-                        $statusText = ($row->status == 1) ? 'Active' : 'Inactive';
-                        $statusClass = ($row->status == 1) ? 'bg-success' : 'bg-danger';
-                        $updateStatus = ($row->status == 1) ? 0 : 1;
-                        $statusText = '<span href="javascript:void(0)" data-id="'.$row->id.'" data-status="'.$updateStatus.'" class="status-change badge rounded-pill  '.$statusClass.'">'.$statusText.'</span>';
-                        return $statusText;
+                        return $this->updateStatus($row);
                     })
                     ->addColumn('mobile', function($row) {
                         return (!empty($row->mobile)) ? $row->mobile : '-';
