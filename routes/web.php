@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\{ManageReminderTypeController,ManageUserController};
+use App\Http\Controllers\Client\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin']],function(){
     Route::post('remindertype/updateStatus',[ManageReminderTypeController::class,'updateStatus'])->name('remindertype.status');
     Route::post('user/updateStatus',[ManageUserController::class,'updateStatus'])->name('user.status');
     Route::get('profile',[ManageUserController::class,'getProfile'])->name('update.profile');
+});
+
+Route::get('/home',[HomeController::class,'index'])->name('client.home');
+Route::group(['prefix'=>'client'],function(){
 });
