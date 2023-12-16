@@ -34,7 +34,7 @@ class ManageUserController extends Controller
                         return $this->editDeleteButtons($row);
                     })
                     ->addColumn('status', function($row) {
-                        return $this->updateStatus($row);
+                        return $this->statusUpdate($row);
                     })
                     ->addColumn('mobile', function($row) {
                         return (!empty($row->mobile)) ? $row->mobile : '-';
@@ -103,5 +103,15 @@ class ManageUserController extends Controller
     public function getProfile() {
         $title = "Update Profile";
        return view('admin.profile.index',compact('title'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $getAuthUserDetail = User::where('id',auth()->id())->first();
+        $getAuthUserDetail->name = $request->name;
+        $getAuthUserDetail->email = $request->email;
+        $getAuthUserDetail->mobile = $request->mobile;
+        $getAuthUserDetail->update();
+        return redirect()->back();
     }
 }

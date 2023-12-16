@@ -48,18 +48,8 @@
 						<div class="tab-pane fade show active profile-edit pt-3" id="profile-edit">
 
 							<!-- Profile Edit Form -->
-							<form>
-								<div class="row mb-3">
-									<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-									<div class="col-md-8 col-lg-9">
-										<img src="assets/img/profile-img.jpg" alt="Profile">
-										<div class="pt-2">
-											<a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-											<a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-										</div>
-									</div>
-								</div>
-
+							<form action="{{route('profile-update')}}" method="POST">
+								@csrf
 								<div class="row mb-3">
 									<label for="name" class="col-md-4 col-lg-3 col-form-label">User Name</label>
 									<div class="col-md-8 col-lg-9">
@@ -77,7 +67,7 @@
 								<div class="row mb-3">
 									<label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
 									<div class="col-md-8 col-lg-9">
-										<input name="email" type="email" class="form-control" id="email" value="{{Auth::user()->mobile??'-'}}">
+										<input name="email" type="email" class="form-control" id="email" value="{{Auth::user()->email??'-'}}">
 									</div>
 								</div>
 

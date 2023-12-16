@@ -29,8 +29,9 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin']],function(){
     Route::post('remindertype/updateStatus',[ManageReminderTypeController::class,'updateStatus'])->name('remindertype.status');
     Route::post('user/updateStatus',[ManageUserController::class,'updateStatus'])->name('user.status');
     Route::get('profile',[ManageUserController::class,'getProfile'])->name('update.profile');
+    Route::post('profile/update', [ManageUserController::class, 'updateProfile'])->name('profile-update');
 });
 
-Route::get('/home',[HomeController::class,'index'])->name('client.home');
 Route::group(['prefix'=>'client'],function(){
+    Route::get('/login',[HomeController::class,'index'])->name('login');
 });

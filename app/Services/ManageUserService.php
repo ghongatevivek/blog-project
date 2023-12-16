@@ -13,6 +13,7 @@ class ManageUserService{
 
         $input = $request->validated();
         $input['user_type'] = 1;
+        $input['status'] = 1;
         $saveUser = User::create($input);
         return $this->successResponseArr('User saved.',$saveUser);
     }
